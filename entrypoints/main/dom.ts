@@ -1,7 +1,7 @@
 import { getMainDomain, selectCompatFn } from "@/entrypoints/main/compat";
 import { html } from 'js-beautify';
 import { handleBtnTranslation } from "@/entrypoints/main/trans";
-import { buildTranslationContext } from "@/entrypoints/utils/context";
+import { buildNodeTranslationContext } from "@/entrypoints/main/context";
 
 // 直接翻译的标签集合（块级元素）
 const directSet = new Set([
@@ -374,7 +374,7 @@ function handleFirstLineText(node: any): boolean {
     while (child) {
         if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) {
             browser.runtime.sendMessage({
-                context: buildTranslationContext(),
+                context: buildNodeTranslationContext(node),
                 origin: child.textContent
             })
                 .then((text: string) => child.textContent = text)
