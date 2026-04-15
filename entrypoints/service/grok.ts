@@ -20,8 +20,8 @@ async function grok(message: any) {
         const resp = await fetch(url, {
             method: method.POST,
             headers,
-            body: commonMsgTemplate(message.origin)
-        });
+        body: commonMsgTemplate(message.origin, message.context)
+    });
 
         if (!resp.ok) {
             throw new Error(`翻译失败: ${resp.status} ${resp.statusText} body: ${await resp.text()}`);

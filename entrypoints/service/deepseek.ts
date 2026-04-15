@@ -15,8 +15,8 @@ async function deepseek(message: any) {
         const resp = await fetch(url, {
             method: method.POST,
             headers,
-            body: deepseekMsgTemplate(message.origin)
-        });
+        body: deepseekMsgTemplate(message.origin, message.context)
+    });
 
         if (!resp.ok) {
             throw new Error(`翻译失败: ${resp.status} ${resp.statusText} body: ${await resp.text()}`);

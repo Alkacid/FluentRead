@@ -400,8 +400,16 @@ export const defaultOption = {
     deeplx: "http://localhost:1188/translate",
     system_role:
         "You are a professional, authentic machine translation engine.",
-    user_role: `Translate the following text into {{to}}, If translation is unnecessary (e.g. proper nouns, codes, etc.), return the original text. NO explanations. NO notes:
+    user_role: `Context:
+\`\`\`
+{{context}}
+\`\`\`
 
+Use the following context only for disambiguation, and do not translate or explain the context itself. 
+
+Translate the following text into {{to}}.If translation is unnecessary (e.g. proper nouns, codes, etc.), return the original text. NO explanations. NO notes:
+
+Original text:
 {{origin}}`,
     count: 0,
     useCache: true,

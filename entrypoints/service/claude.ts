@@ -17,8 +17,8 @@ async function claude(message: any) {
         const resp = await fetch(url, {
             method: method.POST,
             headers,
-            body: claudeMsgTemplate(message.origin)
-        });
+        body: claudeMsgTemplate(message.origin, message.context)
+    });
 
         if (!resp.ok) {
             throw new Error(`请求失败: ${resp.status} ${resp.statusText} body: ${await resp.text()}`);

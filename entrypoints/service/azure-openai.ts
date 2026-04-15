@@ -29,8 +29,8 @@ async function azureOpenai(message: any) {
         const resp = await fetch(endpoint, {
             method: method.POST,
             headers,
-            body: commonMsgTemplate(message.origin)
-        });
+        body: commonMsgTemplate(message.origin, message.context)
+    });
 
         if (!resp.ok) {
             const errorText = await resp.text();

@@ -570,7 +570,7 @@
         <el-row v-show="compute.showAI" class="margin-bottom margin-left-2em">
           <el-col :span="8" class="lightblue rounded-corner">
             <el-tooltip class="box-item" effect="dark"
-              content="以用户身份 user 发送的对话，其中{{to}}表示目标语言，{{origin}}表示待翻译的文本内容，两者不可缺少。"
+              content="以用户身份 user 发送的对话，其中{{to}}表示目标语言，{{origin}}表示待翻译文本，{{context}}表示用于辅助消歧的上下文。建议保留{{origin}}，并在提示词中显式使用{{context}}。"
               placement="top-start" :show-after="500">
               <span class="popup-text popup-vertical-left">user<el-icon class="icon-margin">
                   <ChatDotRound />
