@@ -405,7 +405,7 @@ export const defaultOption = {
 {{context}}
 \`\`\`
 
-Use the following context only for disambiguation, and do not translate or explain the context itself. 
+Use the above context only for disambiguation, and do not translate or explain the context itself. 
 
 Translate the following text into {{to}}.If translation is unnecessary (e.g. proper nouns, codes, etc.), return the original text. NO explanations. NO notes:
 
