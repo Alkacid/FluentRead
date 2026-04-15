@@ -8,6 +8,7 @@ import { detectlang, throttle } from "@/entrypoints/utils/common";
 import { getMainDomain, replaceCompatFn } from "@/entrypoints/main/compat";
 import { config } from "@/entrypoints/utils/config";
 import { translateText, cancelAllTranslations } from '@/entrypoints/utils/translateApi';
+import { buildTranslationContext } from '@/entrypoints/utils/context';
 
 let hoverTimer: any; // 鼠标悬停计时器
 let htmlSet = new Set(); // 防抖
@@ -260,7 +261,7 @@ function bilingualTranslate(node: any, nodeOuterHTML: any) {
     let spinner = insertLoadingSpinner(node);
     
     // 使用队列管理的翻译API
-    translateText(origin, document.title)
+    translateText(origin, buildTranslationContext())
         .then((text: string) => {
             spinner.remove();
             htmlSet.delete(nodeOuterHTML);
@@ -282,7 +283,7 @@ export function singleTranslate(node: any) {
     let spinner = insertLoadingSpinner(node);
     
     // 使用队列管理的翻译API
-    translateText(origin, document.title)
+    translateText(origin, buildTranslationContext())
         .then((text: string) => {
             spinner.remove();
             
@@ -315,7 +316,7 @@ export const handleBtnTranslation = throttle((node: any) => {
 
     config.count++ && storage.setItem('local:config', JSON.stringify(config));
 
-    browser.runtime.sendMessage({ context: document.title, origin: origin })
+    browser.runtime.sendMessage({ context: buildTranslationContext(), origin: origin })
         .then((text: string) => {
             cache.localSetDual(origin, text);
             node.innerText = text;

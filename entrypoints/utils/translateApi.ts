@@ -9,6 +9,7 @@ import { config } from './config';
 import { cache } from './cache';
 import { detectlang } from './common';
 import { storage } from '@wxt-dev/storage';
+import { buildTranslationContext } from './context';
 
 // 调试相关
 const isDev = process.env.NODE_ENV === 'development';
@@ -22,7 +23,7 @@ const isDev = process.env.NODE_ENV === 'development';
  * @param options 翻译选项
  * @returns 翻译结果的Promise
  */
-export async function translateText(origin: string, context: string = document.title, options: TranslateOptions = {}): Promise<string> {
+export async function translateText(origin: string, context: string = buildTranslationContext(), options: TranslateOptions = {}): Promise<string> {
   const {
     maxRetries = 3, 
     retryDelay = 1000, 
