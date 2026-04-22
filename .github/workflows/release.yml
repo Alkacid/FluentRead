@@ -37,6 +37,7 @@ jobs:
           name: fluentread-chrome-release
           path: .output/*.zip
           if-no-files-found: error
+          include-hidden-files: true
 
       - name: Attach zip to GitHub Release
         uses: softprops/action-gh-release@v2
